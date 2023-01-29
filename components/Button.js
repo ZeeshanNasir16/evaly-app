@@ -11,7 +11,11 @@ export default function Button({ icon, title, color, className }) {
       } px-2 py-1.5 md:px-2.5 md:py-2 lg:px-4 lg:py-3  text-white font-light`}
       data-ripple-light='true'
     >
-      <span className={`text-sm sm: text-md md:text-lg font-semibold pr-3`}>
+      <span
+        className={`text-sm sm: text-md md:text-lg sm:font-medium md:font-semibold ${
+          icon ? 'pr-3' : 'pr-0'
+        }`}
+      >
         {title}
       </span>
       {icon}

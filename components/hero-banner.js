@@ -27,17 +27,19 @@ var settings = {
 
 var smallSettings = {
   infinite: true,
-  // speed: 300,
-  autoplay: false,
+  speed: 300,
+  autoplay: true,
   arrows: false,
   slidesToShow: 2,
-  // autoplaySpeed: 3500,
+  autoplaySpeed: 3500,
   slidesToScroll: 1,
   responsive: [
     {
-      breakpoint: 400,
+      breakpoint: 520,
       settings: {
-        slidesToShow: 1,
+        autoplay: false,
+        infinite: false,
+        slidesToShow: 1.25,
         slidesToScroll: 1,
       },
     },
@@ -46,7 +48,7 @@ var smallSettings = {
 
 export default function BannerSlider() {
   return (
-    <div className='mb-4'>
+    <div className='mb-3'>
       <div className='md:hidden'>
         {/* ------------ Banner ------------ */}
         <div>
@@ -60,11 +62,11 @@ export default function BannerSlider() {
               ))}
             </SliderRoot>
           </div>
-          <div className='flex justify-between pb-2'>
+          <div className='flex items-center justify-between pt-2 pb-2'>
             <h2 className='text-lg sm:text-xl font-bold'>Ongoing Campaigns</h2>
-            {/* <p className='text-gray-400 hover:underline underline-offset-4 cursor-pointer'>
-                Show All
-              </p> */}
+            <p className='text-gray-400 hover:underline underline-offset-4 cursor-pointer'>
+              Show All
+            </p>
           </div>
           <div className='rounded-md overflow-hidden'>
             <SliderRoot {...smallSettings}>
@@ -189,10 +191,10 @@ export default function BannerSlider() {
                 <div>
                   <div className="h-auto  rounded-md bg-[url('/images/cart.png')] bg-cover">
                     <div className='h-auto bg-teal-600/50 banner rounded-md'>
-                      <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                      <div className='text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
                         MEGA SME Deal
                       </div>
-                      <div className='text-sm sm:text-md font-light'>
+                      <div className='text-md font-light'>
                         Mega SME Deal for SME Retailers
                       </div>
                     </div>
@@ -204,7 +206,7 @@ export default function BannerSlider() {
                       <div className='text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
                         POD
                       </div>
-                      <div className='text-sm sm:text-md font-light'>
+                      <div className='text-md font-light'>
                         Payment on Delivery within 7 Days
                       </div>
                     </div>
@@ -216,7 +218,7 @@ export default function BannerSlider() {
                       <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
                         MEGA SME Deal
                       </div>
-                      <div className='text-sm sm:text-md font-light'>
+                      <div className='text-md font-light'>
                         Mega SME Deal for SME Retailers
                       </div>
                     </div>
@@ -319,7 +321,7 @@ export default function BannerSlider() {
                           <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
                             MEGA SME Deal
                           </div>
-                          <div className='text-sm sm:text-md font-light'>
+                          <div className='text-md font-light'>
                             Mega SME Deal for SME Retailers
                           </div>
                         </div>
@@ -331,7 +333,7 @@ export default function BannerSlider() {
                           <div className='text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
                             POD
                           </div>
-                          <div className='text-sm sm:text-md font-light'>
+                          <div className='text-md font-light'>
                             Payment on Delivery within 7 Days
                           </div>
                         </div>
@@ -343,7 +345,7 @@ export default function BannerSlider() {
                           <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
                             MEGA SME Deal
                           </div>
-                          <div className='text-sm sm:text-md font-light'>
+                          <div className='text-md font-light'>
                             Mega SME Deal for SME Retailers
                           </div>
                         </div>
@@ -383,7 +385,7 @@ export default function BannerSlider() {
 }
 
 export const SliderRoot = styled(Slider)(() => ({
-  '& .slick-track > *:not(:last-of-type)': {
+  '& .slick-track > *': {
     paddingInline: '5px !important',
   },
   '& .slick-list': {

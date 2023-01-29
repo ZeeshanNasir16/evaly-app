@@ -108,7 +108,7 @@ export default function HomePage() {
         <div className='overflow-hidden'>
           <HeroBannerSlider />
           <div className='mt-0 sm:mt-1 md:mt-4 lg:mt-5 pb-5'>
-            <section className='mb-9'>
+            <section className='mb-1.5'>
               <h2 className='text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold'>
                 Shop by Brands
               </h2>
@@ -138,15 +138,15 @@ export default function HomePage() {
             </section>
             <section className='pt-2 md:pt-4 mb-5'>
               <div className='flex items-center justify-between'>
-                <h2 className='text-lg sm:text-xl md:text-3xl font-bold'>
+                <h2 className='text-lg sm:text-xl md:text-2xl font-bold'>
                   Travel & Tours
                 </h2>
-                <Button
+                {/* <Button
                   title='View All'
                   icon={<ArrowCircleRightOutlinedIcon fontSize='medium' />}
-                />
+                /> */}
               </div>
-              <div className='mt-5 md:mt-8 travel-tour-section'>
+              <div className='mt-2.5 md:mt-5 travel-tour-section'>
                 {TOUR_DESTINATIONS.map((destination, index) => {
                   return (
                     <div

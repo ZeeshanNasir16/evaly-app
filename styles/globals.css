@@ -83,6 +83,9 @@ body {
   .banner {
     padding: 30px !important;
   }
+  .smallbannerDesc {
+    font-size: 18px;
+  }
 }
 
 .carousel .thumb.selected,

@@ -5,7 +5,7 @@ const BannerCarouselItem = ({ bannerImg, alt }) => {
   return (
     <div className='rounded-md'>
       <Image
-        className='h-[145px] md:h-[300px] lg:h-[352px] rounded-lg w-full object-cover'
+        className='h-[145px] md:h-[300px] lg:h-[349px] rounded-lg w-full object-cover'
         src={bannerImg}
         alt={alt}
         height={500}
