@@ -48,9 +48,29 @@ body {
   max-height: 100% !important;
   color: #fff;
   padding: 15px;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
 }
 
+.smallbannerDesc {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 500px) {
+  .smallbannerDesc {
+    font-size: 12px;
+  }
+}
+@media (min-width: 501px) and (max-width: 767px) {
+  .smallbannerDesc {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .smallbannerDesc {
+    font-size: 14px;
+  }
+}
 @media screen and (min-width: 480px) and (max-width: 1024px) {
   .thumbs-wrapper {
     display: flex;
@@ -94,7 +114,14 @@ li.thumb {
   font-size: 12px !important;
   color: rgb(13 148 136) !important;
 }
-
+.slick-slide {
+  height: 100%;
+}
+@media screen and (max-width: 540px) {
+  .smallBannerText {
+    font-size: 16px !important;
+  }
+}
 /* Home Page */
 .travel-tour-section {
   display: grid;

@@ -27,15 +27,15 @@ var settings = {
 
 var smallSettings = {
   infinite: true,
-  speed: 300,
-  autoplay: true,
+  // speed: 300,
+  autoplay: false,
   arrows: false,
   slidesToShow: 2,
-  autoplaySpeed: 3500,
+  // autoplaySpeed: 3500,
   slidesToScroll: 1,
   responsive: [
     {
-      breakpoint: 500,
+      breakpoint: 400,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -71,10 +71,10 @@ export default function BannerSlider() {
               <div>
                 <div className=" h-auto min-h-[7vh]  rounded-md bg-[url('/images/cart.png')] bg-cover">
                   <div className='h-auto bg-teal-600/50 banner rounded-md'>
-                    <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                    <div className='sm:text-xl md:text-3xl uppercase font-bold smallBannerHeading '>
                       MEGA SME Deal
                     </div>
-                    <div className='text-sm sm:text-md font-light'>
+                    <div className='smallbannerDesc font-light truncate'>
                       Mega SME Deal for SME Retailers
                     </div>
                   </div>
@@ -83,10 +83,10 @@ export default function BannerSlider() {
               <div>
                 <div className=" h-full min-h-[7vh] rounded-md bg-[url('/images/deal.png')] bg-cover">
                   <div className='h-full bg-red-400/50 banner rounded-md'>
-                    <div className='text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                    <div className='sm:text-xl md:text-3xl uppercase font-bold smallBannerHeading '>
                       POD
                     </div>
-                    <div className='text-sm sm:text-md font-light'>
+                    <div className='smallbannerDesc font-light truncate'>
                       Payment on Delivery within 7 Days
                     </div>
                   </div>
@@ -95,10 +95,10 @@ export default function BannerSlider() {
               <div>
                 <div className="h-auto min-h-[7vh]  rounded-md bg-[url('/images/cart.png')] bg-cover">
                   <div className='h-auto bg-teal-600/50 banner rounded-md'>
-                    <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                    <div className='sm:text-xl md:text-3xl uppercase font-bold smallBannerHeading '>
                       MEGA SME Deal
                     </div>
-                    <div className='text-sm sm:text-md font-light'>
+                    <div className='smallbannerDesc font-light truncate'>
                       Mega SME Deal for SME Retailers
                     </div>
                   </div>
