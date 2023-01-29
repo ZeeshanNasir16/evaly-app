@@ -1,5 +1,5 @@
 import { Inria_Sans } from '@next/font/google';
-import React, { Component, useEffect, useRef, useState } from 'react';
+import React, { Component, useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
@@ -24,12 +24,7 @@ import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumb
 import MenuIcon from '@mui/icons-material/Menu';
 import { EvalyLogo } from './icons/logo';
 
-import PersonIcon from '@mui/icons-material/Person';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import HomeIcon from '@mui/icons-material/Home';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import {
-  Badge,
   Divider,
   Drawer,
   IconButton,
@@ -39,9 +34,9 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
-  styled,
 } from '@mui/material';
-import CustomizedMenus from './ui/options-menu';
+import CategoriesMenu from './common/CategoriesMenu';
+import MenuButton from './common/MenuButton';
 
 const inriaSans = Inria_Sans({
   subsets: ['latin'],
@@ -49,10 +44,8 @@ const inriaSans = Inria_Sans({
 });
 
 import SearchBar from './search-bar';
-import CartMenuWeb from './cart/CartMenuWeb';
 import NavbarButtonsMain from './navbarButtonsMain';
-import CategoriesMenu from './common/CategoriesMenu';
-import MenuButton from './common/MenuButton';
+import CartMenuWeb from './cart/CartMenuWeb';
 
 const Navigation = (props) => {
   return (
@@ -148,36 +141,38 @@ class MobileNav extends Component {
           <div className='hidden sm:block'>
             <EvalyLogo height={22} />
           </div>
-          <div style={styles.search}>
-            <div className='w-full sm:pl-3 flex items-center justify-end'>
-              <input
-                className='w-full py-[4px] rounded-tl-md outline-none rounded-bl-md px-3 border border-black'
-                type='text'
-                onBlur={() => {
-                  this.handleSearchClose();
-                }}
-                onFocus={() => {
-                  this.handleSearchOpen();
-                }}
-                onChange={() => {
-                  this.handleSearchOpen();
-                }}
-                onScroll={() => {
-                  this.handleSearchClose();
-                }}
-                placeholder='Search for ...'
-              />
-              <button className='py-[9px] rounded-tr-md rounded-br-md px-2 bg-black'>
-                <AiOutlineSearch color='white' />
-              </button>
+          <div className='flex justify-end w-full pl-3'>
+            <div style={styles.search}>
+              <div className='w-full flex items-center justify-end'>
+                <input
+                  className='w-full py-[4px] rounded-tl-md outline-none rounded-bl-md px-3 border border-black'
+                  type='text'
+                  onBlur={() => {
+                    this.handleSearchClose();
+                  }}
+                  onFocus={() => {
+                    this.handleSearchOpen();
+                  }}
+                  onChange={() => {
+                    this.handleSearchOpen();
+                  }}
+                  onScroll={() => {
+                    this.handleSearchClose();
+                  }}
+                  placeholder='Search for ...'
+                />
+              </div>
+              {this.state.toggleSearch && (
+                <SearchBar
+                  onClose={() => {
+                    this.handleSearchClose();
+                  }}
+                />
+              )}
             </div>
-            {this.state.toggleSearch && (
-              <SearchBar
-                onClose={() => {
-                  this.handleSearchClose();
-                }}
-              />
-            )}
+            <button className='py-[9px] rounded-tr-md rounded-br-md px-3 bg-black'>
+              <AiOutlineSearch color='white' />
+            </button>
           </div>
         </div>
         <div>
@@ -291,100 +286,29 @@ const TabletNavigation = (props) => {
         <div>
           <EvalyLogo height={25} />
         </div>
-        <div className='w-[60%] relative'>
-          <div className='flex items-center'>
-            <input
-              className='w-[90%] py-[4px] rounded-tl-md outline-none rounded-bl-md px-3 sm:px-4 border border-black'
-              onBlur={handleSearchClose}
-              onFocus={handleSearchOpen}
-              onChange={handleSearchOpen}
-              onScroll={handleSearchClose}
-              type='text'
-              placeholder='Search for ...'
-            />
-            <button className='py-[9px] rounded-tr-md rounded-br-md px-5 bg-black'>
-              <AiOutlineSearch color='white' />
-            </button>
+        <div className='flex w-full px-5'>
+          <div className='w-full relative'>
+            <div className='flex items-center'>
+              <input
+                className='w-full py-[4px] rounded-tl-md outline-none rounded-bl-md px-3 sm:px-4 border border-black'
+                onBlur={handleSearchClose}
+                onFocus={handleSearchOpen}
+                onChange={handleSearchOpen}
+                onScroll={handleSearchClose}
+                type='text'
+                placeholder='Search for ...'
+              />
+            </div>
+            {toggleSearch && <SearchBar onClose={handleSearchClose} />}
           </div>
-          {toggleSearch && <SearchBar onClose={handleSearchClose} />}
+          <button className='py-[9px] rounded-tr-md rounded-br-md px-5 bg-black'>
+            <AiOutlineSearch color='white' />
+          </button>
         </div>
         <NavbarButtonsMain size='sm' />
       </div>
       <div className='bg-[#040720] px-10 justify-between flex text-white h-12'>
         <div className='flex items-center bg-red-700 px-5 w-[255px]'>
-          {/* <button
-            className='w-full flex items-end justify-between gap-3'
-            id='basic-button'
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup='true'
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
-          >
-            <div className='flex items-center gap-1'>
-              <MenuButton
-                open={toggle}
-                onClick={() => {
-                  setToggle(!toggle);
-                }}
-                color='white'
-              />
-              <p className={`${inriaSans.className} text-white`}>CATEGORIES</p>
-            </div>
-            <div className='ml-3'>
-              {!toggle ? (
-                <KeyboardArrowRightIcon sx={{ color: '#fff' }} />
-              ) : (
-                <KeyboardArrowDownIcon sx={{ color: '#fff' }} />
-              )}
-            </div>
-          </button>
-          <Menu
-            className='MenuList borderRadTopZero translate-x-[-20px] translate-y-[11px] p-0'
-            id='basic-menu'
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
-            {[
-              'Desktop',
-              'Laptop',
-              "Men's Watch",
-              'Microwave Oven',
-              'Motor Bike',
-              'Refrigerator',
-              'Smart Phone',
-              'Smart TV & Android TV',
-              'Speaker',
-              'Split AC',
-            ].map((item, i, arr) => {
-              return (
-                <React.Fragment key={item}>
-                  <MenuItem
-                    className='w-[255px] h-full'
-                    sx={{
-                      paddingTop: '12px',
-                      paddingBottom: '12px',
-                    }}
-                    key={item}
-                    onClick={handleClose}
-                  >
-                    <div
-                      className={`${inriaSans.className} flex items-center justify-between w-full`}
-                    >
-                      <p>{item}</p>
-                      <KeyboardArrowRightIcon sx={{ height: 17 }} />
-                    </div>
-                  </MenuItem>
-                  {!(i === arr.length - 1) && (
-                    <hr className='border-gray-300' />
-                  )}
-                </React.Fragment>
-              );
-            })}
-          </Menu> */}
           <CategoriesMenu type='normal' />
         </div>
         <ul className='flex-1 flex justify-evenly items-center'>
@@ -419,6 +343,7 @@ const WebNavigation = (props) => {
         setVisible(false);
       }
     }
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -444,28 +369,30 @@ const WebNavigation = (props) => {
         <div>
           <EvalyLogo height={25} />
         </div>
-        <div className='relative w-full w-[65%] xl:w-[73%] '>
-          <div className='flex items-center'>
-            <input
-              className='w-[100%] py-[7px] rounded-tl-md outline-none rounded-bl-md px-3 border border-black'
-              type='text'
-              onBlur={handleSearchClose}
-              onFocus={handleSearchOpen}
-              onChange={handleSearchOpen}
-              onScroll={handleSearchClose}
-              placeholder='Search for ...'
-            />
-            <button className='py-[12px] rounded-tr-md rounded-br-md px-8 bg-black'>
-              <AiOutlineSearch color='white' />
-            </button>
+        <div className='flex w-full'>
+          <div className='ml-5 relative w-full'>
+            <div className='flex items-center'>
+              <input
+                className='w-[100%] py-[7px] rounded-tl-md outline-none rounded-bl-md px-3 border border-black'
+                type='text'
+                onBlur={handleSearchClose}
+                onFocus={handleSearchOpen}
+                onChange={handleSearchOpen}
+                onScroll={handleSearchClose}
+                placeholder='Search for ...'
+              />
+            </div>
+            {toggleSearch && (
+              <SearchBar
+                onClose={() => {
+                  setToggleSearch(false);
+                }}
+              />
+            )}
           </div>
-          {toggleSearch && (
-            <SearchBar
-              onClose={() => {
-                setToggleSearch(false);
-              }}
-            />
-          )}
+          <button className='py-[12px] rounded-tr-md rounded-br-md px-8 bg-black mr-5'>
+            <AiOutlineSearch color='white' />
+          </button>
         </div>
         <NavbarButtonsMain size='md' />
       </div>
@@ -482,9 +409,7 @@ const WebNavigation = (props) => {
                 <p className={`${inriaSans.className} text-white`}>
                   CATEGORIES
                 </p>
-                {/* <div className='ml-3'> */}
                 <KeyboardArrowDownIcon sx={{ color: '#fff' }} />
-                {/* </div> */}
               </div>
             ) : (
               <CategoriesMenu ref={ref} type='toggle' />
@@ -543,12 +468,3 @@ const ContactNavigation = () => {
     </div>
   );
 };
-
-const BadgeExt = styled(Badge, {
-  shouldForwardProp: (props) => props !== 'badgeColor',
-})(({ badgeColor }) => ({
-  '& .MuiBadge-badge': {
-    backgroundColor: badgeColor,
-    color: '#fff',
-  },
-}));
