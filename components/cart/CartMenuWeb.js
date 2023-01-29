@@ -72,6 +72,7 @@ const CartMenuWeb = ({ open, toggleMenu, anchorEl }) => {
         anchorEl={anchorEl}
         open={open}
         onClose={toggleMenu}
+        disableScrollLock={true}
         MenuListProps={{
           'aria-labelledby': 'cart-button',
           sx: {

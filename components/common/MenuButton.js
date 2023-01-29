@@ -6,12 +6,16 @@ export default class MenuButton extends Component {
     this.state = {
       open: this.props.open ? this.props.open : false,
       color: this.props.color ? this.props.color : 'black',
+      anchorEl: this.props.anchorEl ? this.props.anchorEl : false,
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.state.open) {
       this.setState({ open: nextProps.open });
+    }
+    if (nextProps.anchorEl !== this.state.anchorEl) {
+      this.setState({ anchorEl: nextProps.anchorEl });
     }
   }
 
@@ -38,16 +42,23 @@ export default class MenuButton extends Component {
         transition: 'all 0.2s ease',
       },
       lineTop: {
-        transform: this.state.open ? 'rotate(45deg)' : 'none',
+        transform:
+          this.state.open || !!this.state.anchorEl ? 'rotate(45deg)' : 'none',
         transformOrigin: 'top left',
         marginBottom: '4px',
       },
       lineMiddle: {
-        opacity: this.state.open ? 0 : 1,
-        transform: this.state.open ? 'translateX(-16px)' : 'none',
+        opacity: this.state.open || !!this.state.anchorEl ? 0 : 1,
+        transform:
+          this.state.open || !!this.state.anchorEl
+            ? 'translateX(-16px)'
+            : 'none',
       },
       lineBottom: {
-        transform: this.state.open ? 'translateX(-2px) rotate(-45deg)' : 'none',
+        transform:
+          this.state.open || !!this.state.anchorEl
+            ? 'translateX(-2px) rotate(-45deg)'
+            : 'none',
         transformOrigin: 'top left',
         marginTop: '4px',
       },

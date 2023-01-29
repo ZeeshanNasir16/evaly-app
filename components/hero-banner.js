@@ -10,83 +10,104 @@ const inria_sans = Inria_Sans({
   weight: ['300', '400', '700'],
 });
 
-import { MenuItem, MenuList, Paper } from '@mui/material';
+import { Box, MenuItem, MenuList, Paper, styled } from '@mui/material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import BannerCarouselItem from './carousels/bannerCarouselItem';
+
+var settings = {
+  dots: true,
+  infinite: true,
+  speed: 300,
+  autoplay: true,
+  autoplaySpeed: 3300,
+  arrows: false,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
+
+var smallSettings = {
+  infinite: true,
+  speed: 300,
+  autoplay: true,
+  arrows: false,
+  slidesToShow: 2,
+  autoplaySpeed: 3500,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 500,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
 export default function BannerSlider() {
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 250,
-    autoplay: true,
-    arrows: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-  const webSettings = {
-    dots: true,
-    infinite: true,
-    speed: 250,
-    autoplay: true,
-    arrows: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
   return (
-    <div>
+    <div className='mb-4'>
       <div className='md:hidden'>
+        {/* ------------ Banner ------------ */}
         <div>
-          {/* ------------ Banner ------------ */}
-          <div>
-            <div className='py-1'>
-              <Slider {...settings}>
-                <div>
-                  <Image
-                    className='h-[145px] rounded-lg w-full object-cover'
-                    src={'/banner/amazon.jpg'}
-                    alt={'Deal'}
-                    height={500}
-                    width={500}
-                  />
-                </div>
-                <div>
-                  <Image
-                    className='h-[145px] rounded-lg w-full object-cover'
-                    src={'/banner/amazon.jpg'}
-                    alt={'Deal'}
-                    height={500}
-                    width={500}
-                  />
-                </div>
-                <div>
-                  <Image
-                    className='h-[145px] rounded-lg w-full object-cover'
-                    src={'/banner/amazon.jpg'}
-                    alt={'Deal'}
-                    height={500}
-                    width={500}
-                  />
-                </div>
-                <div>
-                  <Image
-                    className='h-[145px] rounded-lg w-full object-cover'
-                    src={'/banner/amazon.jpg'}
-                    alt={'Deal'}
-                    height={500}
-                    width={500}
-                  />
-                </div>
-              </Slider>
-            </div>
-            <div className='flex justify-between pb-2'>
-              <h2 className='text-lg sm:text-xl font-bold'>
-                Ongoing Campaigns
-              </h2>
-              <p className='text-gray-400 hover:underline underline-offset-4 cursor-pointer'>
+          <div className='my-1 rounded-lg overflow-hidden'>
+            <SliderRoot {...settings}>
+              {[...Array(4)].map((_, index) => (
+                <BannerCarouselItem
+                  bannerImg='/banner/amazon.jpg'
+                  alt='Banner Deal'
+                />
+              ))}
+            </SliderRoot>
+          </div>
+          <div className='flex justify-between pb-2'>
+            <h2 className='text-lg sm:text-xl font-bold'>Ongoing Campaigns</h2>
+            {/* <p className='text-gray-400 hover:underline underline-offset-4 cursor-pointer'>
                 Show All
-              </p>
-            </div>
-            <div className='flex gap-3 overflow-x-auto scroll-bar-style'>
+              </p> */}
+          </div>
+          <div className='rounded-md overflow-hidden'>
+            <SliderRoot {...smallSettings}>
+              <div>
+                <div className=" h-auto min-h-[7vh]  rounded-md bg-[url('/images/cart.png')] bg-cover">
+                  <div className='h-auto bg-teal-600/50 banner rounded-md'>
+                    <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                      MEGA SME Deal
+                    </div>
+                    <div className='text-sm sm:text-md font-light'>
+                      Mega SME Deal for SME Retailers
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className=" h-full min-h-[7vh] rounded-md bg-[url('/images/deal.png')] bg-cover">
+                  <div className='h-full bg-red-400/50 banner rounded-md'>
+                    <div className='text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                      POD
+                    </div>
+                    <div className='text-sm sm:text-md font-light'>
+                      Payment on Delivery within 7 Days
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="h-auto min-h-[7vh]  rounded-md bg-[url('/images/cart.png')] bg-cover">
+                  <div className='h-auto bg-teal-600/50 banner rounded-md'>
+                    <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                      MEGA SME Deal
+                    </div>
+                    <div className='text-sm sm:text-md font-light'>
+                      Mega SME Deal for SME Retailers
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </SliderRoot>
+          </div>
+
+          {/* <div className='flex gap-3 overflow-x-auto scroll-bar-style'>
               <div className="h-auto min-h-[7vh] min-w-[70vw] rounded-md bg-[url('/images/cart.png')] bg-cover">
                 <div className='flex-1 h-auto bg-teal-600/50 banner rounded-md'>
                   <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
@@ -107,16 +128,24 @@ export default function BannerSlider() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div> */}
         </div>
       </div>
       <div className='hidden md:block lg:hidden'>
         {/* ------------ Banner ------------ */}
         <div>
           <div className='my-4'>
-            <div>
-              <Slider {...settings}>
+            <div className='rounded-lg overflow-hidden'>
+              <SliderRoot {...settings}>
+                {[...Array(4)].map((_, index) => (
+                  <BannerCarouselItem
+                    key={index}
+                    bannerImg='/banner/amazon.jpg'
+                    alt='Banner Deal'
+                  />
+                ))}
+              </SliderRoot>
+              {/* <Slider {...settings}>
                 <div>
                   <Image
                     className='h-[300px] rounded-lg w-full object-cover'
@@ -153,9 +182,49 @@ export default function BannerSlider() {
                     width={1200}
                   />
                 </div>
-              </Slider>
+              </Slider> */}
             </div>
-            <div className='flex gap-3 pt-2 overflow-x-hidden'>
+            <div className='mt-2.5 rounded-md overflow-hidden'>
+              <SliderRoot {...smallSettings}>
+                <div>
+                  <div className="h-auto  rounded-md bg-[url('/images/cart.png')] bg-cover">
+                    <div className='h-auto bg-teal-600/50 banner rounded-md'>
+                      <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                        MEGA SME Deal
+                      </div>
+                      <div className='text-sm sm:text-md font-light'>
+                        Mega SME Deal for SME Retailers
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className=" h-full rounded-md bg-[url('/images/deal.png')] bg-cover">
+                    <div className='h-full bg-red-400/50 banner rounded-md'>
+                      <div className='text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                        POD
+                      </div>
+                      <div className='text-sm sm:text-md font-light'>
+                        Payment on Delivery within 7 Days
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="h-auto  rounded-md bg-[url('/images/cart.png')] bg-cover">
+                    <div className='h-auto bg-teal-600/50 banner rounded-md'>
+                      <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                        MEGA SME Deal
+                      </div>
+                      <div className='text-sm sm:text-md font-light'>
+                        Mega SME Deal for SME Retailers
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SliderRoot>
+            </div>
+            {/* <div className='flex gap-3 pt-2 overflow-x-hidden'>
               <div className="flex-1 rounded-md bg-[url('/images/cart.png')] bg-cover">
                 <div className='banner rounded-md bg-teal-600/50 h-full '>
                   <div className='text-2xl lg:text-3xl animated tada uppercase font-bold'>
@@ -176,7 +245,7 @@ export default function BannerSlider() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -230,48 +299,59 @@ export default function BannerSlider() {
                   </MenuList>
                 </Paper>
               </div>
-              <div className='w-[74%] lg:w-[76%] '>
-                <div className='mb-[5px] lg:pl-1 xl:pl-0'>
-                  <Slider {...webSettings}>
-                    <div>
-                      <Image
-                        className='h-[346px] rounded-md w-full object-cover'
-                        src={'/banner/amazon.jpg'}
-                        alt={'Deal'}
-                        height={1000}
-                        width={1000}
+              <div className='w-[74%] lg:w-[75.75%] overflow-hidden'>
+                <div className='mb-[10px] rounded-lg overflow-hidden'>
+                  <SliderRoot {...settings}>
+                    {[...Array(4)].map((_, index) => (
+                      <BannerCarouselItem
+                        key={index}
+                        bannerImg='/banner/amazon.jpg'
+                        alt='Banner Deal'
                       />
-                    </div>
-                    <div>
-                      <Image
-                        className='h-[346px] rounded-md w-full object-cover'
-                        src={'/banner/amazon.jpg'}
-                        alt={'Deal'}
-                        height={1000}
-                        width={1000}
-                      />
-                    </div>
-                    <div>
-                      <Image
-                        className='h-[346px] rounded-md w-full object-cover'
-                        src={'/banner/amazon.jpg'}
-                        alt={'Deal'}
-                        height={1000}
-                        width={1000}
-                      />
-                    </div>
-                    <div>
-                      <Image
-                        className='h-[346px] rounded-md w-full object-cover'
-                        src={'/banner/amazon.jpg'}
-                        alt={'Deal'}
-                        height={1000}
-                        width={1000}
-                      />
-                    </div>
-                  </Slider>
+                    ))}
+                  </SliderRoot>
                 </div>
-                <div className='flex gap-3 lg:pl-1 xl:pl-0 mr-3'>
+                <div className='rounded-md overflow-hidden'>
+                  <SliderRoot {...smallSettings}>
+                    <div>
+                      <div className="h-auto  rounded-md bg-[url('/images/cart.png')] bg-cover">
+                        <div className='h-auto bg-teal-600/50 banner rounded-md'>
+                          <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                            MEGA SME Deal
+                          </div>
+                          <div className='text-sm sm:text-md font-light'>
+                            Mega SME Deal for SME Retailers
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className=" h-full rounded-md bg-[url('/images/deal.png')] bg-cover">
+                        <div className='h-full bg-red-400/50 banner rounded-md'>
+                          <div className='text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                            POD
+                          </div>
+                          <div className='text-sm sm:text-md font-light'>
+                            Payment on Delivery within 7 Days
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="h-auto  rounded-md bg-[url('/images/cart.png')] bg-cover">
+                        <div className='h-auto bg-teal-600/50 banner rounded-md'>
+                          <div className=' text-xl sm:text-2xl md:text-3xl uppercase font-bold'>
+                            MEGA SME Deal
+                          </div>
+                          <div className='text-sm sm:text-md font-light'>
+                            Mega SME Deal for SME Retailers
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </SliderRoot>
+                </div>
+                {/* <div className='flex gap-3 lg:pl-1 xl:pl-0 mr-3'>
                   <div className="min-h-[10vh] min-w-[50%] rounded-md bg-[url('/images/cart.png')] bg-cover">
                     <div className='banner bg-teal-600/50 rounded-md h-full'>
                       <div className='text-3xl animated tada uppercase font-bold'>
@@ -292,7 +372,7 @@ export default function BannerSlider() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -301,3 +381,12 @@ export default function BannerSlider() {
     </div>
   );
 }
+
+export const SliderRoot = styled(Slider)(() => ({
+  '& .slick-track > *:not(:last-of-type)': {
+    paddingInline: '5px !important',
+  },
+  '& .slick-list': {
+    marginInline: '-5px',
+  },
+}));

@@ -5,10 +5,6 @@ import { inriaSans } from '../utils/getinriaFont';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-React.forwardRef((props, ref) => {
-  return <div ref={ref}>Hello World</div>;
-});
-
 const CategoriesMenu = React.forwardRef((props, ref) => {
   const [toggle, setToggle] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -23,6 +19,18 @@ const CategoriesMenu = React.forwardRef((props, ref) => {
     setAnchorEl(null);
     setToggle(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setAnchorEl(null);
+      setToggle(false);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [anchorEl]);
 
   return (
     <>
@@ -41,16 +49,14 @@ const CategoriesMenu = React.forwardRef((props, ref) => {
             setToggle(!toggle);
           }}
           color='white'
+          anchorEl={anchorEl}
         />
         <p className={`${inriaSans.className} text-white`}>CATEGORIES</p>
-        {/* </div> */}
-        {/* <div className='ml-3'> */}
-        {!toggle ? (
+        {!toggle || !anchorEl ? (
           <KeyboardArrowRightIcon sx={{ color: '#fff' }} />
         ) : (
           <KeyboardArrowDownIcon sx={{ color: '#fff' }} />
         )}
-        {/* </div> */}
       </button>
       <Menu
         className={`MenuList borderRadTopZero ${
@@ -66,6 +72,7 @@ const CategoriesMenu = React.forwardRef((props, ref) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        disableScrollLock={true}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}

@@ -105,9 +105,9 @@ export default function HomePage() {
       <div
         className={`${inriaSans.className} px-4 md:px-10 xl:px-12 max-w-7xl mx-auto pb-9 md:pb-0`}
       >
-        <div>
+        <div className='overflow-hidden'>
           <HeroBannerSlider />
-          <div className='mt-0 sm:mt-4 md:mt-14 lg:mt-5 pb-5'>
+          <div className='mt-0 sm:mt-1 md:mt-4 lg:mt-5 pb-5'>
             <section className='mb-9'>
               <h2 className='text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold'>
                 Shop by Brands

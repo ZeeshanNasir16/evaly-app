@@ -1,5 +1,5 @@
 import { IconButton } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Badge from './badge';
 import CartMenuWeb from './cart/CartMenuWeb';
 
@@ -17,6 +17,17 @@ const NavbarButtonsMain = ({ size }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setAnchorEl(null);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [anchorEl]);
 
   return (
     <React.Fragment>
